@@ -16,10 +16,31 @@
 from os.path import exists
 from csv import DictReader, DictWriter
 
+class LenNumberError(Exception):
+    def __init__(self, txt):
+        self.txt = txt
+
+
+
 def get_info():
     first_name = "Иван"
     last_name = "Иванов"
-    phone_number = "898575484545"
+
+    is_valid_phone = False
+    while not is_valid_phone:
+        try:
+            phone_number = int(input("Введите номер: "))
+            if len(str(phone_number)) != 11:
+                raise LenNumberError('Неверна длина номера!')
+            else:
+                is_valid_phone = True
+        except ValueError:
+            print('Не валидный номер!')
+            continue
+        except LenNumberError as err:
+            print(err)
+            continue
+
     return [first_name, last_name, phone_number]
 
 
