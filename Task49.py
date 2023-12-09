@@ -96,6 +96,7 @@ def write_file(file_name, lst):
 def line_copy(file_name):
     count = 0 
     res = []
+    list1 = []
     c = int(input("Какую строку скопировать? "))+1
     with open(file_name, "r", encoding='utf-8') as data:
         for line in data:
@@ -104,16 +105,13 @@ def line_copy(file_name):
                 print(line)
                 res = list(line.split(','))
         print(res)
+    #     obj = {"Имя": res[0], "Фамилия": res[1], "Телефон": res[2]}
+    # list1.append(obj)
+    # with open(choose_file(), "a", encoding='utf-8', newline='') as data:
+    #     f_writer = DictWriter(data, fieldnames=['Имя', 'Фамилия', 'Телефон'])
+    #     f_writer.writerows(list1)
         write_file(choose_file(), res)
-            # print(res)
-            # write_file('phone1.csv', res)
-                # co = 0
-                # for el in line:
-                #     res.append(line[co]) 
-                #     co += 1
-                #     print(res)
-                # print(res.append(line.split(',')))
-            # write_file(choose_file(), res)
+        
 
 def choose_file():
     file_name = 'phone.csv'
