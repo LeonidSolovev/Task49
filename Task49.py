@@ -13,3 +13,5 @@
 # 4. Использование функций. Ваша программа
 # не должна быть линейной
 
+from os.path import exists
+from csv import DictReader, DictWriter
