@@ -41,3 +41,23 @@ def write_file(file_name, lst):
         f_writer = DictWriter(data, fieldnames=['Имя', 'Фамилия', 'Телефон'])
         f_writer.writeheader()
         f_writer.writerows(res)
+
+file_name = 'phone.csv'
+
+def main():
+    while True:
+        command = input('Введите команду: ')
+        if command == 'q':
+            break
+        elif command == 'w':
+            if not exists(file_name):
+                create_file(file_name)
+            write_file(file_name, get_info) 
+        elif command == 'r':
+            if not exists(file_name):
+                print('Файл отсутствует, создайте его!')
+                continue
+            print(*read_file(file_name))
+
+
+main()
