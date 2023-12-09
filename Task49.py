@@ -110,14 +110,14 @@ def line_copy(file_name):
     # with open(choose_file(), "a", encoding='utf-8', newline='') as data:
     #     f_writer = DictWriter(data, fieldnames=['Имя', 'Фамилия', 'Телефон'])
     #     f_writer.writerows(list1)
-        write_file(choose_file(), res)
+        write_file(choose_file("В какой файл добавить: "), res)
         
 
-def choose_file():
+def choose_file(message):
     file_name = 'phone.csv'
     file1_name = 'phone1.csv'
 
-    file = int(input('Введите номер файла: '))
+    file = int(input(message))
     if file == 1:
         return file_name
     elif file == 2:
@@ -132,18 +132,18 @@ def main():
         if command == 'q':
             break
         elif command == 'w':
-            a = choose_file()
+            a = choose_file("Какой файл открыть: ")
             if not exists(a):
                 create_file(a)
             write_file(a, get_info())
         elif command == 'r':
-            a = choose_file()
+            a = choose_file("Какой файл открыть: ")
             if not exists(a):
                 print("Файл отсутствует. Создайте его")
                 continue
             print(*read_file(a))
         elif command == 'lc':
-            a = choose_file()
+            a = choose_file('Выберите, из какого файла копировать строку: ')
             line_copy(a)
             
 
