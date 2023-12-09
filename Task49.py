@@ -40,9 +40,9 @@ def get_info():
     is_valid_name = False
     while not is_valid_name:
         try:
-            last_name = input("Введите имя: ")
+            last_name = input("Введите Фамилию: ")
             if len(last_name) < 2:
-                raise NameError('Невалидно Имя!')
+                raise NameError('Невалидна Фамилия!')
             else:
                is_valid_name = True 
         except NameError as err:
@@ -83,7 +83,7 @@ def read_file(file_name):
 def write_file(file_name, lst):
     res = read_file(file_name)
     for elem in res:
-        if elem["Телефон"] == str(lst[2]):
+        if elem["Телефон"] == int(lst[2]):
             print("Такой телефон уже есть")
             return
     obj = {"Имя": lst[0], "Фамилия": lst[1], "Телефон": lst[2]}
@@ -93,8 +93,37 @@ def write_file(file_name, lst):
         f_writer.writeheader()
         f_writer.writerows(res)
 
+def line_copy(file_name):
+    count = 0 
+    res = []
+    list1 = []
+    c = int(input("Какую строку скопировать? "))+1
+    with open(file_name, "r", encoding='utf-8') as data:
+        for line in data:
+            count +=1
+            if count == c:
+                print(line)
+                res = list(line.split(','))
+        print(res)
+    #     obj = {"Имя": res[0], "Фамилия": res[1], "Телефон": res[2]}
+    # list1.append(obj)
+    # with open(choose_file(), "a", encoding='utf-8', newline='') as data:
+    #     f_writer = DictWriter(data, fieldnames=['Имя', 'Фамилия', 'Телефон'])
+    #     f_writer.writerows(list1)
+        write_file(choose_file("В какой файл добавить: "), res)
+        
 
-file_name = 'phone.csv'
+def choose_file(message):
+    file_name = 'phone.csv'
+    file1_name = 'phone1.csv'
+
+    file = int(input(message))
+    if file == 1:
+        return file_name
+    elif file == 2:
+        return file1_name
+    else:
+        print('Такого файла не существует')
 
 
 def main():
@@ -103,14 +132,19 @@ def main():
         if command == 'q':
             break
         elif command == 'w':
-            if not exists(file_name):
-                create_file(file_name)
-            write_file(file_name, get_info())
+            a = choose_file("Какой файл открыть: ")
+            if not exists(a):
+                create_file(a)
+            write_file(a, get_info())
         elif command == 'r':
-            if not exists(file_name):
+            a = choose_file("Какой файл открыть: ")
+            if not exists(a):
                 print("Файл отсутствует. Создайте его")
                 continue
-            print(*read_file(file_name))
-
+            print(*read_file(a))
+        elif command == 'lc':
+            a = choose_file('Выберите, из какого файла копировать строку: ')
+            line_copy(a)
+            
 
 main()
