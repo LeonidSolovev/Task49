@@ -82,6 +82,10 @@ def read_file(file_name):
 
 def write_file(file_name, lst):
     res = read_file(file_name)
+    for elem in res:
+        if elem["Телефон"] == str(lst[2]):
+            print("Такой телефон уже есть")
+            return
     obj = {"Имя": lst[0], "Фамилия": lst[1], "Телефон": lst[2]}
     res.append(obj)
     with open(file_name, "w", encoding='utf-8', newline='') as data:
