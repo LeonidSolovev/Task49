@@ -20,5 +20,16 @@ from csv import DictReader, DictWriter
 def get_info():
     first_name = "Иван"
     second_name = "Иванов"
-    phone_number = "+7898734398"
+    phone_number = "8898734398"
+    return [first_name, second_name, phone_number]
+
+def create_file(file_name):
+    with open(file_name, "w", encoding='utf-8') as data:
+        f_writer = DictWriter(data, fieldnames=['Имя', 'Фамилия', 'Телефон'])
+        f_writer.writeheader()
+
+def read_file(file_name):
+    with open(file_name, "r", encoding='utf-8') as data:
+        f_reader = DictReader(data)
+        return list(f_reader)
     
