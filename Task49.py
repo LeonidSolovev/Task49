@@ -40,9 +40,9 @@ def get_info():
     is_valid_name = False
     while not is_valid_name:
         try:
-            last_name = input("Введите имя: ")
+            last_name = input("Введите Фамилию: ")
             if len(last_name) < 2:
-                raise NameError('Невалидно Имя!')
+                raise NameError('Невалидна Фамилия!')
             else:
                is_valid_name = True 
         except NameError as err:
@@ -94,7 +94,18 @@ def write_file(file_name, lst):
         f_writer.writerows(res)
 
 
-file_name = 'phone.csv'
+
+def choose_file():
+    file_name = 'phone.csv'
+    file1_name = 'phone1.csv'
+
+    file = int(input('Введите номер файла: '))
+    if file == 1:
+        return file_name
+    elif file == 2:
+        return file1_name
+    else:
+        print('Такого файла не существует')
 
 
 def main():
@@ -103,14 +114,16 @@ def main():
         if command == 'q':
             break
         elif command == 'w':
-            if not exists(file_name):
-                create_file(file_name)
-            write_file(file_name, get_info())
+            a = choose_file()
+            if not exists(a):
+                create_file(a)
+            write_file(a, get_info())
         elif command == 'r':
-            if not exists(file_name):
+            a = choose_file()
+            if not exists(a):
                 print("Файл отсутствует. Создайте его")
                 continue
-            print(*read_file(file_name))
+            print(*read_file(a))
 
 
 main()
