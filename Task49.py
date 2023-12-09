@@ -83,7 +83,7 @@ def read_file(file_name):
 def write_file(file_name, lst):
     res = read_file(file_name)
     for elem in res:
-        if elem["Телефон"] == str(lst[2]):
+        if elem["Телефон"] == int(lst[2]):
             print("Такой телефон уже есть")
             return
     obj = {"Имя": lst[0], "Фамилия": lst[1], "Телефон": lst[2]}
@@ -102,9 +102,11 @@ def line_copy(file_name):
             count +=1
             if count == c:
                 print(line)
-            res = list(line.split(','))
-            print(res)
-            write_file('phone1.csv', res)
+                res = list(line.split(','))
+        print(res)
+        write_file(choose_file(), res)
+            # print(res)
+            # write_file('phone1.csv', res)
                 # co = 0
                 # for el in line:
                 #     res.append(line[co]) 
