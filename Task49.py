@@ -95,15 +95,20 @@ def write_file(file_name, lst):
 
 def line_copy(file_name):
     count = 0 
-    # res = []
+    res = []
     c = int(input("Какую строку скопировать? "))+1
     with open(file_name, "r", encoding='utf-8') as data:
         for line in data:
             count +=1
             if count == c:
                 print(line)
+            res = list(line.split(','))
+            print(res)
+            write_file('phone1.csv', res)
+                # co = 0
                 # for el in line:
-                #     res.append(line[el]) 
+                #     res.append(line[co]) 
+                #     co += 1
                 #     print(res)
                 # print(res.append(line.split(',')))
             # write_file(choose_file(), res)
