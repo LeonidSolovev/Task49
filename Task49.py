@@ -15,3 +15,10 @@
 
 from os.path import exists
 from csv import DictReader, DictWriter
+
+
+def get_info():
+    first_name = "Иван"
+    second_name = "Иванов"
+    phone_number = "+7898734398"
+    
