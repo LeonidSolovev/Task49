@@ -20,11 +20,34 @@ class LenNumberError(Exception):
     def __init__(self, txt):
         self.txt = txt
 
-
+class NameError(Exception):
+    def __init__(self, txt):
+        self.txt = txt
 
 def get_info():
-    first_name = "Иван"
-    last_name = "Иванов"
+    is_valid_name = False
+    while not is_valid_name:
+        try:
+            first_name = input("Введите имя: ")
+            if len(first_name) < 2:
+                raise NameError('Невалидно Имя!')
+            else:
+               is_valid_name = True 
+        except NameError as err:
+            print(err)
+            continue
+        
+    is_valid_name = False
+    while not is_valid_name:
+        try:
+            last_name = input("Введите имя: ")
+            if len(last_name) < 2:
+                raise NameError('Невалидно Имя!')
+            else:
+               is_valid_name = True 
+        except NameError as err:
+            print(err)
+            continue
 
     is_valid_phone = False
     while not is_valid_phone:
